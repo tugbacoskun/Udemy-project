@@ -1,0 +1,56 @@
+﻿@model UdemyProject.Models.EntityFramework.tblogrenciler
+@{
+    ViewBag.Title = "YeniOgrenci";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<form method="post" class="form-group">
+    <div>
+        <label>Ogrenci Adı</label>
+        <input type="text" class="form-control" name="ograd" />
+    </div>
+    <div style="margin-top:10px">
+        <label>Öğrenci Soyadı</label>
+        <input type="text" class="form-control" name="ogrsoyad" />
+    </div>
+    <div style="margin-top:10px">
+        <label>Öğrenci Fotoğraf</label>
+        <input type="text" class="form-control" name="ogrfoto" />
+    </div>
+    <div style="margin-top:10px">
+        <label>Öğrenci Cinsiyet</label>
+        <input type="text" class="form-control" name="ogrcinsiyet" />
+    </div>
+    <div style="margin-top:10px">
+        <label>Öğrenci Kulüp</label>
+        @Html.DropDownList("Kulüpler",
+       new[]
+       {
+           new SelectListItem() {Value="1", Text="Bilişim"},
+           new SelectListItem() {Value="2", Text="Kitaplık"},
+           new SelectListItem() {Value="3", Text="Temizlik"},
+       }, "Kulüp Seçiniz...", new { @class = "form-control" })
+
+
+
+
+
+    </div>
+
+        <div style="margin-top:10px">
+            <label>Şehir Seçimi</label>
+            @Html.DropDownList("Şehirler",
+           new[]
+           {
+               new SelectListItem() {Value="1", Text="Ankara"},
+               new SelectListItem() {Value="2", Text="İstanbul"},
+               new SelectListItem() {Value="3", Text="İzmir"},
+               new SelectListItem() {Value="4", Text="Bursa"}
+           }, "Şehir Seçiniz...", new { @class = "form-control" })
+
+        </div>
+        <div style="margin-top:10px">
+            <button class="btn btn-primary">Öğrenci Ekle</button>
+        </div>
+</form>
+

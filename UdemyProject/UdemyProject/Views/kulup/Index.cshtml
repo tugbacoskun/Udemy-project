@@ -1,0 +1,29 @@
+﻿@using UdemyProject.Models.EntityFramework
+@model List<tblkulupler>
+ 
+    @{
+        ViewBag.Title = "Index";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+    <table class="table table-bordered">
+        <tr>
+            <th>KULUP ID</th>
+            <th>KULUP ADI</th>
+            <th>İŞLEMLER</th>
+        </tr>
+        <tbody>
+            @foreach (var klp in Model)
+            {
+                <tr>
+                    <td>@klp.kulupid</td>
+                    <td>@klp.kulupad</td>
+                    <td> <a href="/kulup/Sil/@klp.kulupid" class="btn btn-danger">Sil</a>
+                    <a href="/kulup/KulupGetir/@klp.kulupid" class="btn btn-success">Güncelle</a>
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+    <a href="/kulup/YeniKulup" class="btn btn-primary">Yeni Kulup Kaydı</a>

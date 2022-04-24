@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="dbmvcModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="tbldersler">
+    <Key>
+      <PropertyRef Name="dersıd" />
+    </Key>
+    <Property Name="dersıd" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="dersad" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tblnotlars" Relationship="Self.FK_tblnotlar_tbldersler" FromRole="tbldersler" ToRole="tblnotlar" />
+  </EntityType>
+  <EntityType Name="tblkulupler">
+    <Key>
+      <PropertyRef Name="kulupid" />
+    </Key>
+    <Property Name="kulupid" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="kulupad" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="kulupkontenjan" Type="Int16" />
+    <NavigationProperty Name="tblogrencilers" Relationship="dbmvcModel.FK_tblogrenciler_tblkulupler" FromRole="tblkulupler" ToRole="tblogrenciler" />
+  </EntityType>
+  <EntityType Name="tblnotlar">
+    <Key>
+      <PropertyRef Name="notid" />
+    </Key>
+    <Property Name="notid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="dersid" Type="Byte" />
+    <Property Name="ogrid" Type="Int32" />
+    <Property Name="sinav1" Type="Byte" />
+    <Property Name="sinav2" Type="Byte" />
+    <Property Name="sinav3" Type="Byte" />
+    <Property Name="proje" Type="Byte" />
+    <Property Name="ortalama" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="durum" Type="Boolean" />
+    <NavigationProperty Name="tbldersler" Relationship="Self.FK_tblnotlar_tbldersler" FromRole="tblnotlar" ToRole="tbldersler" />
+    <NavigationProperty Name="tblogrenciler" Relationship="dbmvcModel.FK_tblnotlar_tblogrenciler" FromRole="tblnotlar" ToRole="tblogrenciler" />
+  </EntityType>
+  <Association Name="FK_tblnotlar_tbldersler">
+    <End Role="tbldersler" Type="Self.tbldersler" Multiplicity="0..1" />
+    <End Role="tblnotlar" Type="Self.tblnotlar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbldersler">
+        <PropertyRef Name="dersıd" />
+      </Principal>
+      <Dependent Role="tblnotlar">
+        <PropertyRef Name="dersid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="dbmvcEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tblderslers" EntityType="Self.tbldersler" />
+    <EntitySet Name="tblkuluplers" EntityType="Self.tblkulupler" />
+    <EntitySet Name="tblnotlars" EntityType="Self.tblnotlar" />
+    <AssociationSet Name="FK_tblnotlar_tbldersler" Association="Self.FK_tblnotlar_tbldersler">
+      <End Role="tbldersler" EntitySet="tblderslers" />
+      <End Role="tblnotlar" EntitySet="tblnotlars" />
+    </AssociationSet>
+    <EntitySet Name="sysdiagrams" EntityType="dbmvcModel.sysdiagram" />
+    <EntitySet Name="tblogrencilers" EntityType="dbmvcModel.tblogrenciler" />
+    <AssociationSet Name="FK_tblogrenciler_tblkulupler" Association="dbmvcModel.FK_tblogrenciler_tblkulupler">
+      <End Role="tblkulupler" EntitySet="tblkuluplers" />
+      <End Role="tblogrenciler" EntitySet="tblogrencilers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblnotlar_tblogrenciler" Association="dbmvcModel.FK_tblnotlar_tblogrenciler">
+      <End Role="tblogrenciler" EntitySet="tblogrencilers" />
+      <End Role="tblnotlar" EntitySet="tblnotlars" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="tblogrenciler">
+    <Key>
+      <PropertyRef Name="ogrenciıd" />
+    </Key>
+    <Property Name="ogrenciıd" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ograd" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="ogrsoyad" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="ogrfoto" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="ogrcinsiyet" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="ogrkulup" Type="Byte" />
+    <NavigationProperty Name="tblkulupler" Relationship="dbmvcModel.FK_tblogrenciler_tblkulupler" FromRole="tblogrenciler" ToRole="tblkulupler" />
+    <NavigationProperty Name="tblnotlars" Relationship="dbmvcModel.FK_tblnotlar_tblogrenciler" FromRole="tblogrenciler" ToRole="tblnotlar" />
+  </EntityType>
+  <Association Name="FK_tblogrenciler_tblkulupler">
+    <End Type="dbmvcModel.tblkulupler" Role="tblkulupler" Multiplicity="0..1" />
+    <End Type="dbmvcModel.tblogrenciler" Role="tblogrenciler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblkulupler">
+        <PropertyRef Name="kulupid" />
+      </Principal>
+      <Dependent Role="tblogrenciler">
+        <PropertyRef Name="ogrkulup" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblnotlar_tblogrenciler">
+    <End Type="dbmvcModel.tblogrenciler" Role="tblogrenciler" Multiplicity="0..1" />
+    <End Type="dbmvcModel.tblnotlar" Role="tblnotlar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblogrenciler">
+        <PropertyRef Name="ogrenciıd" />
+      </Principal>
+      <Dependent Role="tblnotlar">
+        <PropertyRef Name="ogrid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

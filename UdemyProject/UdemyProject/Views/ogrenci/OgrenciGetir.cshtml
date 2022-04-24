@@ -1,0 +1,44 @@
+﻿@model UdemyProject.Models.EntityFramework.tblogrenciler
+@{
+    ViewBag.Title = "OgrenciGetir";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Guncelle", "ogrenci", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.ograd)
+        @Html.TextBoxFor(m => m.ograd, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.ogrsoyad)
+        @Html.TextBoxFor(m => m.ogrsoyad, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.ogrcinsiyet)
+        @Html.TextBoxFor(m => m.ogrcinsiyet, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.ogrfoto)
+        @Html.TextBoxFor(m => m.ogrfoto, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.ogrkulup)
+        @*  @Html.TextBoxFor(m => m.ogrkulup, new { @class = "form-control" }) *@
+        @Html.DropDownList("Kulüpler",
+      new[]
+      {
+          new SelectListItem() {Value="1", Text="Bilişim"},
+          new SelectListItem() {Value="2", Text="Kitaplık"},
+          new SelectListItem() {Value="3", Text="Temizlik"},
+      }, "Kulüp Seçiniz...", new { @class = "form-control" })
+
+    </div>
+
+    @Html.HiddenFor(m => m.ogrenciıd)
+    <div style="margin-top: 15px">
+        <button class="btn btn-info">Güncelle</button>
+    </div>
+
+}
+

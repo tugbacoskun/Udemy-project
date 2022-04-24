@@ -1,0 +1,17 @@
+﻿@model UdemyProject.Models.EntityFramework.tblkulupler
+@{
+    ViewBag.Title = "KulupGetir";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Guncelle", "kulup", FormMethod.Post))
+            {
+                <div class="form-group">
+                    @Html.LabelFor(m => m.kulupad)
+                    @Html.TextBoxFor(m => m.kulupad, new { @class = "form-control" })
+                </div>
+                @Html.HiddenFor(m =>m.kulupid)
+                <div style="margin-top: 15px">
+                    <button class="btn btn-info">Güncelle</button>
+                </div>
+            }

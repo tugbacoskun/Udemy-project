@@ -1,0 +1,37 @@
+﻿@using UdemyProject.Models.EntityFramework
+@model List<tblogrenciler>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<table class="table table-bordered">
+    <tr>
+        <th>ÖĞRENCİ ID</th>
+        <th>ÖĞRENCİ ADI</th>
+        <th>SOYADI</th>
+        <th>CİNSİYET</th>
+        <th>FOTOĞRAF</th>
+        <th>KULÜP</th>
+        <th>İŞLEMLER</th>
+    </tr>
+    <tbody>
+        @foreach (var ogr in Model)
+        {
+        <tr>
+            <td>@ogr.ogrenciıd</td>
+            <td>@ogr.ograd</td>
+            <td>@ogr.ogrsoyad</td>
+            <td>@ogr.ogrcinsiyet</td>
+            <td>@ogr.ogrfoto</td>
+            <td>@ogr.tblkulupler.kulupad</td>
+            <td>
+                <a href="/ogrenci/Sil/@ogr.ogrenciıd" class="btn btn-danger">Sil</a>
+                <a href="/ogrenci/OgrenciGetir/@ogr.ogrenciıd" class="btn btn-success">Güncelle</a>
+            </td>
+        </tr>
+        }
+
+    </tbody>
+</table>
+<a href="/ogrenci/YeniOgrenci" class="btn btn-primary">Yeni Öğrenci Kaydı</a>
+

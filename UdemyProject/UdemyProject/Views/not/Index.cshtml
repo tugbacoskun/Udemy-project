@@ -1,0 +1,39 @@
+﻿@using UdemyProject.Models.EntityFramework
+@model List<tblnotlar>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<table class="table table-bordered">
+    <tr>
+        <th>NOT ID</th>
+        <th>ÖĞRENCİ</th>
+        <th>DERS</th>
+        <th>SINAV1</th>
+        <th>SINAV2</th>
+        <th>SINAV3</th>
+        <th>ORTALAMA</th>
+        <th>DURUM</th>
+        <th>GÜNCELLE</th>
+    </tr>
+    <tbody>
+        @foreach (var not in Model)
+        {
+        <tr>
+            <td>@not.notid</td>
+            <td>@not.ogrid</td>
+            <td>@not.dersid</td>
+            <td>@not.sinav1</td>
+            <td>@not.sinav2</td>
+            <td>@not.sinav3</td>
+            <td>@not.proje</td>
+            <td>@not.ortalama</td>
+            <td><a href="/Not/NotGetir/@not.notid" class="btn btn-warning">Güncelle</a></td>
+        </tr>
+        }
+
+    </tbody>
+</table>
+<a href="/not/YeniSinav" class="btn btn-primary">Yeni Sınav Kaydı</a>
+

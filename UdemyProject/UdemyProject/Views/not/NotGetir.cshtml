@@ -1,0 +1,49 @@
+﻿@model UdemyProject.Models.EntityFramework.tblnotlar
+@{
+    ViewBag.Title = "NotGetir";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("NotGetir", "not", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.ogrid)
+        @Html.TextBoxFor(m => m.ogrid, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.sinav1)
+        @Html.TextBoxFor(m => m.sinav1, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.sinav2)
+        @Html.TextBoxFor(m => m.sinav2, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.sinav3)
+        @Html.TextBoxFor(m => m.sinav3, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.proje)
+        @Html.TextBoxFor(m => m.proje, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.ortalama)
+        @Html.TextBoxFor(m => m.ortalama, new { @Value = @ViewBag.ort , @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.durum)
+        @Html.TextBoxFor(m => m.durum, new { @class = "form-control" })
+    </div>
+    @Html.HiddenFor(m => m.notid)
+    <div>
+        <button type="submit" name="islem" value="HESAPLA" class="btn btn-default">
+            Hesapla
+        </button>
+        <br /> <br />
+        <button type="submit" name="islem" value="NOTGUNCELLE" class="btn btn-info">
+            Güncelle
+        </button>
+    </div>
+}
+
